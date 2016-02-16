@@ -46,7 +46,7 @@ export class TodoList {
                     this.todos.push({
                         nid: task.nid,
                         title: task.title,
-                        completed: task.field_complete === 'true' || task.field_complete === 'True',
+                        completed: task.field_complete === '1',
                     });
                 }
                 // remove the loading message
