@@ -1,0 +1,12 @@
+<li [class.editing]="editMode" [class.completed]="todo.completed">
+    <div class="view">
+        <input class="toggle" type="checkbox" (click)="toggle()" [checked]="todo.completed">
+        <label (dblclick)="enterEditMode(todoItemInput)">{{todo.title}}</label>
+        <!-- <input class="priority" type="checkbox" (click)="markPriority()" [checked]="item.priority === 'High'"> -->
+        <button (click)="removeClicked(todo.nid)" class="destroy"></button>
+    </div>
+    <input class="edit" [value]="todo.title" #todoItemInput
+    (keyup.enter)="commitEdit(todoItemInput.value)"
+    (keyup.escape)="cancelEdit(todoItemInput)"
+    (blur)="commitEdit(todoItemInput.value)">
+</li>
