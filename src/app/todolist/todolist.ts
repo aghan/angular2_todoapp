@@ -80,6 +80,7 @@ export class TodoList {
                 },
                 err => console.log(err)
             );
+            this.newItem = '';
         }
     }
     removeItem(nid: number) {
