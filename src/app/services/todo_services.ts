@@ -15,11 +15,24 @@ export class TodoServices {
         this.todoSettings = todoSettings;
     }
 
+    getCSRF() {
+        var csrfurl: string = '/rest/session/token';
+        var csrftoken: string = '';
+
+        csrfurl = this.todoSettings.getEndpoint() + csrfurl;
+        return this.http.get(csrfurl).map(res => res.text());
+    }
+
+    setCSRF(token: string) {
+        this.todoSettings.setCSRFToken(token);
+    }
+
     getHeaders() {
         var authHeader = new Headers();
         authHeader.append('Content-Type', this.todoSettings.getIoFormat());
         authHeader.append('Accept',  this.todoSettings.getIoFormat());
         authHeader.append('Authorization', this.todoSettings.getAuthorization());
+        authHeader.append('X-CSRF-Token', this.todoSettings.getCSRFToken());
         return authHeader;
     }
 

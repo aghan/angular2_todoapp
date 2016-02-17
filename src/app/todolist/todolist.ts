@@ -27,15 +27,26 @@ import {TodoItem} from '../todoitem/todoitem';
 export class TodoList {
     todoService: TodoServices;
     newItem = '';
+    csrfToken = '';
     todos: Array<Todo> = [];
     loading: boolean = true;
 
     constructor(todoService: TodoServices) {
         this.todoService = todoService;
-
-        // get the todo items
-        this.getItems();
+        // set the CSRF token first
+        this.todoService.getCSRF().subscribe(
+            data => {
+                if (data) {
+                    this.todoService.setCSRF(data);
+                }
+            },
+            err => console.log(err),
+            () => {
+                this.getItems();
+            }
+        );
     }
+
     getItems() {
         this.todos = [];
         // get the list of nodes here

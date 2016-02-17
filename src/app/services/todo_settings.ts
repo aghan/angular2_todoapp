@@ -1,3 +1,6 @@
+/**
+ * Created by adighan on 17/02/16.
+ */
 import {Injectable} from 'angular2/core';
 
 @Injectable()
@@ -7,13 +10,13 @@ export class TodoSettings {
     password: string = 'dummy';
     format: string = 'application/json';
     type: string = 'todo';
+    token: string = '';
 
     getEndpoint() {
         return this.endpoint;
     }
 
     getAuthorization() {
-        var auth: string;
         var encodedString: string;
         // define the string
         var string = this.username + ':' + this.password;
@@ -29,5 +32,12 @@ export class TodoSettings {
 
     getcontentType() {
         return this.type;
+    }
+
+    getCSRFToken() {
+        return this.token;
+    }
+    setCSRFToken(token: string) {
+        this.token = token;
     }
 }
