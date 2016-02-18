@@ -17,7 +17,6 @@ export class TodoServices {
 
     getCSRF() {
         var csrfurl: string = '/rest/session/token';
-        var csrftoken: string = '';
 
         csrfurl = this.todoSettings.getEndpoint() + csrfurl;
         return this.http.get(csrfurl).map(res => res.text());
